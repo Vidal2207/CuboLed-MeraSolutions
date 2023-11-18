@@ -132,6 +132,17 @@ header div{
     animation: badWifi 3s infinite alternate;
 }
 
+.clic-bloqueado {
+    cursor: not-allowed;
+    opacity: 0.7; 
+    transition: opacity 0.5s ease; 
+}
+.opcion.clic-bloqueado {
+    cursor: not-allowed;
+    transition: cursor 0.5s ease;
+}
+
+
 @keyframes badWifi {
 	10%, 30%, 50%, 70%, 90% {
 		color: red;

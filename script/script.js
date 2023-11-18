@@ -37,7 +37,6 @@ $(document).ready(function(){
     });
 
     function onConnect() {
-        var topic = "merasolutions2221";
         client.subscribe(TOPIC);
         showConectado();
     }
@@ -56,26 +55,39 @@ $(document).ready(function(){
         }
     }
 
-     // ////  CONTROLAR LAS OPCIONES ////////
-     $(".opcion").click(function() {
-        if( $(this).hasClass("seleccionado")){
-            $(".opcion").removeClass("seleccionado");
-        }else{
-            var message = $(this).attr("id");
-            console.log(message);
+    // ////  CONTROLAR LAS OPCIONES ////////
+    var clicHabilitado = true;
+    $(".opcion").click(function() {
+        if (clicHabilitado) {
+            clicHabilitado = false;
+
+            var msj = "0";
+            if ($(this).hasClass("seleccionado")) {
+                $(".opcion").removeClass("seleccionado");
+                $("#0").addClass("seleccionado");
+            } else {
+                msj = $(this).attr("id");
+                $(".opcion").removeClass("seleccionado");
+                $(this).addClass("seleccionado");
+            }
+     
             if (client.isConnected()) {
-                var message = new Paho.MQTT.Message(message);
+                var message = new Paho.MQTT.Message(msj);
                 message.destinationName = TOPIC;
                 client.send(message);
+                console.log(msj);
             } else {
                 lostConection("El cliente no está conectado.");
             }
 
-
-            $(".opcion").removeClass("seleccionado");
-            $(this).addClass("seleccionado");
-        }
+            $(".opcion").addClass("clic-bloqueado");
+            setTimeout(function() {
+                clicHabilitado = true;
+                $(".opcion").removeClass("clic-bloqueado");
+            }, 1000);
+         }
     });
+     
 
 
     function lostConection(mess)
