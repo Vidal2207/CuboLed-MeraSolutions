@@ -12,7 +12,8 @@ $(document).ready(function(){
     const MQTT_USERNAME = "emqx";
     const MQTT_PASSWORD = "public";
     const CLIENT_PREFIX = "client_id_";
-    const TOPIC = "InstruccionesLeds2221";
+    const TOPIC = "SalidaMeraSolutions";
+    const TOPIC_SEND = "InstruccionesLeds2221";
 
     var clientId = CLIENT_PREFIX + Math.floor(Math.random() * 1000000 + 1);
     var client = new Paho.MQTT.Client(MQTT_SERVER, MQTT_PORT, clientId);
@@ -40,10 +41,11 @@ $(document).ready(function(){
         client.subscribe(TOPIC);
         showConectado();
     }
-    
+
     function onMessageArrived(message) {
-        //console.log("Un mensaje ha llegado " + message.payloadString);
+        console.log(message.payloadString);
     }
+
 
     function onFailure(e) {
         lostConection("ERROR: \n" + e.errorMessage);
@@ -71,14 +73,7 @@ $(document).ready(function(){
                 $(this).addClass("seleccionado");
             }
      
-            if (client.isConnected()) {
-                var message = new Paho.MQTT.Message(msj);
-                message.destinationName = TOPIC;
-                client.send(message);
-                console.log(msj);
-            } else {
-                lostConection("El cliente no está conectado.");
-            }
+            sendMessage(msj);
 
             $(".opcion").addClass("clic-bloqueado");
             setTimeout(function() {
@@ -87,8 +82,18 @@ $(document).ready(function(){
             }, 1000);
          }
     });
-     
 
+    function sendMessage(msj)
+    {
+        if (client.isConnected()) {
+            var message = new Paho.MQTT.Message(msj);
+            message.destinationName = TOPIC_SEND;
+            client.send(message);
+            console.log("Send: " + msj);
+        } else {
+            lostConection("El cliente no está conectado.");
+        }
+    }
 
     function lostConection(mess)
     {
@@ -113,6 +118,4 @@ $(document).ready(function(){
         $('.wifi').addClass("redWifi");
         $('.main').hide();
     }
-    
-
 });
