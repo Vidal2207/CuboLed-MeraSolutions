@@ -12,7 +12,7 @@ $(document).ready(function(){
     const MQTT_USERNAME = "emqx";
     const MQTT_PASSWORD = "public";
     const CLIENT_PREFIX = "client_id_";
-    const TOPIC = "merasolutions2221";
+    const TOPIC = "InstruccionesLeds2221";
 
     var clientId = CLIENT_PREFIX + Math.floor(Math.random() * 1000000 + 1);
     var client = new Paho.MQTT.Client(MQTT_SERVER, MQTT_PORT, clientId);
