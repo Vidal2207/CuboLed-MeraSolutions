@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif; 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Versión sin prefijo, actualmente compatible con Chrome y Opera */
+
+}
+.loading{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/loading.gif') 50% 50% no-repeat #FDFDFD;
+}
+header{
+    height:10vh;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 0px 2px #000;
+    background-color: black;
+    align-items: center;
+}
+header div{
+    min-width: min-content;
+    margin: 20px;
+    display: flex;
+    align-items: center; 
+}
+.title{
+    font-size: 270%;
+    font-weight: bold;
+    color: white;
+}
+.icono{
+    font-size: 120%;
+    margin-right: 20px;
+    /* animation: naranja-neon 3s infinite alternate; */
+}
+.wifi{
+    color: white;
+    font-size: 350%;
+    margin-right: 3%;
+}
+/* ///////////////////// */
+.content{
+    margin-top: 10vh;
+    padding-top: 3%;
+    width: 100%;
+    height: 90vh;
+}
+.div-info{
+    padding-top: 10%;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-size: 19px;
+}
+.btn-link{
+    display: inline-block;
+    margin-top: 25px;
+    padding: 8px 20px 8px 20px;
+    color: rgb(253, 253, 253);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    -webkit-transition: all 700ms ease;
+    -o-transition: all 700ms ease;
+    transition: all 700ms ease;
+    background-color: #ff8000;
+}
+.btn-link:hover{
+    background-color: white;
+    color:#ff8000;
+    border: 1px solid #ff8000;
+}
+.greenWifi{
+    color: rgb(20, 196, 61);
+}
+.redWifi{
+    color: red;
+}
+.load{
+    z-index: 9999;
+    background-image: url('../img/loading.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 40%;
+    background-color: #fff;
+}
+.main{
+    padding-top: 10%;
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    font-size: 19px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+.opcion{
+    border: 1px solid #ff8000;
+    color: #ea7f14;
+    padding: 20px;
+    margin: 10px;
+}
+.ico{
+    font-size: 40px;
+}
+.opcion:hover{
+    cursor: pointer;
+    background-color: #ff8000;
+    color: #FDFDFD;
+}
+.seleccionado{
+    background-color: #f68e26;
+    color: #FDFDFD;
+}
+
+.badWifi{
+    animation: badWifi 3s infinite alternate;
+}
+
+@keyframes badWifi {
+	10%, 30%, 50%, 70%, 90% {
+		color: red;
+	}
+
+	0%, 20%, 40%, 60%, 80%{
+		color: white;
+	}
+    100% {
+		color: rgb(20, 196, 61);
+	}
+}
